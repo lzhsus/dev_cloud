@@ -1,0 +1,27 @@
+<!--pages/periodset/periodset.wxml-->
+<view class="periodset-page" id="periodset-page">
+    <view class="periodset-page-container">
+        <view class="ul">
+            <view class="li">
+                <view class="li-name">您的月经大概持续几天？</view>
+                <view class="li-item">
+                    <text>经期长度</text>
+                    <picker wx:if='{{periodObj.openid}}' bindchange="bindPickerChange" value="{{perido_index}}" range="{{periodArr}}" range-key="day">
+                        <view class="picker">{{periodArr[perido_index].day}}天</view>
+                    </picker>
+                    <view class="picker-show" wx:else bindtap="hintBtn">2天</view>
+                </view>
+            </view>
+            <view class="li">
+                <view class="li-name">两个月开始日大概间隔多久</view>
+                <view class="li-item">
+                    <text>周期长度</text>
+                    <picker  wx:if='{{periodObj.openid}}' bindchange="bindPickerChange1" value="{{perido_index1}}" range="{{periodArr1}}" range-key="day">
+                        <view class="picker">{{periodArr1[perido_index1].day}}天</view>
+                    </picker>
+                    <view class="picker-show" wx:else bindtap="hintBtn">15天</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

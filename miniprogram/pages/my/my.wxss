@@ -1,0 +1,77 @@
+/* pages/my/my.wxss */
+page {
+    background: #f6f6f6;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+#my-page {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex: 1;
+}
+
+.my-page-container {
+    width: 710rpx;height: 100%;margin:auto;
+    display: flex;justify-content: flex-start;flex-direction: column;flex: 1;
+}
+.userinfo{
+    width: 100%;min-height: 120rpx;
+    border-radius: 12rpx;overflow: hidden;
+    background: #fff;
+    display: flex;justify-content: flex-start;align-items: center;
+    position:relative;overflow: hidden;
+    padding:20rpx;box-sizing: border-box;
+}
+button.userinfo-avatar{
+    position: absolute;top: 0;left: 0;
+    width: 100%;height: 100%;
+}
+button.userinfo-avatar::after{
+    border: none;
+}
+.info{
+    display: flex;justify-content: flex-start;align-items: center;
+}
+.avatarUrl{
+    width: 100rpx;height: 100rpx;
+    display: flex;justify-content: center;align-items: center;
+    margin-right: 20rpx;border-radius: 2px;overflow: hidden;
+}
+.avatarUrl image{
+    display: block;width: 100%;
+}
+.nickname{
+    font-size: 16px;color: #000;
+    font-weight: bold;
+}
+.set-box{
+    margin-top: 20rpx;
+    display: flex;justify-content: center;align-items: center;
+    flex-direction: column;
+}
+.set-box .li{
+    padding:20rpx 40rpx;box-sizing: border-box;
+    border-radius: 12rpx;overflow: hidden;
+    position: relative;
+    width: 100%;min-height: 80rpx;
+    display: flex;justify-content: flex-start;align-items: center;
+    background:#fff;
+    border-bottom: 0px solid #ccc;
+    margin-bottom: 20rpx;
+}
+.set-box .li:last-child{
+    border-bottom: 0px solid #ccc;
+}
+.set-box .li::before{
+
+}
+.set-box .li::after{
+    position: absolute;right: 30rpx;top: 50%;
+    display: block;content: '';
+    width: 20rpx;height: 20rpx;
+    border-top: 1px solid #999;
+    border-right: 1px solid #999;
+    transform: rotate(45deg) translateY(-50%);
+}

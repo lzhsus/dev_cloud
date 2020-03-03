@@ -1,0 +1,24 @@
+<!--pages/recordlist/recordlist.wxml-->
+<view class="recordlist-page" id="recordlist-page">
+    <view class="recordlist-page-container">
+        <view class="ul" wx:if="{{periodlist.length}}">
+            <view class="li" wx:for="{{periodlist}}" wx:key="index">
+                <view class="item">
+                    <view class="lable">实际经期时间</view>
+                    <view class="vaule">{{item.period_time}} ~ {{item.period_reality_end?item.period_reality_end:item.period_end}} （共{{item.period_reality_continue_long?item.period_reality_continue_long:item.period_continue_long}}天）</view>
+                </view>
+                <view class="item">
+                    <view class="lable">预计经期时间</view>
+                    <view class="vaule active">{{item.period_time}} ~ {{item.period_end}} （共{{item.period_continue_long}}天）</view>
+                </view>
+                <view class="item">
+                    <view class="lable">预计经期周长</view>
+                    <view class="vaule">{{item.period_month_long}}天</view>
+                </view>
+            </view>
+        </view>
+        <view class="ul" wx:else>
+            <view class="hint">暂无数据！</view>
+        </view>
+    </view>
+</view>

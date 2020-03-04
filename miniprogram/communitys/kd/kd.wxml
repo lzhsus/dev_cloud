@@ -1,0 +1,13 @@
+<!--communitys/kd/kd.wxml-->
+<view class="input-box">
+    <input bindinput="bindinput" value="{{kd_num}}" placeholder="请输入快递编号"></input>
+
+    <button type="primary" bindtap="lookResult">查询</button>
+</view>
+
+<view class="ul">
+    <view class="li" wx:for="{{dataList}}" wx:key="index">
+        <text class="time">{{item.time}}</text>
+        <text class="content">{{item.content}}</text>
+    </view>
+</view>

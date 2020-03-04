@@ -1,0 +1,16 @@
+<!--communitys/kd/kd.wxml-->
+<view class="input-box">
+    <input bindinput="bindinput" value="{{keyword}}" placeholder="请输入关键词"></input>
+
+    <button type="primary" bindtap="lookResult">查询</button>
+</view>
+
+<view class="ul">
+    <view class="li" wx:for="{{dataList}}" wx:key="index">
+        <text class="artists" wx:if="{{item.artists.length}}">
+            <view></view>
+            <view></view>
+        </text>
+        <text class="content">{{item.content}}</text>
+    </view>
+</view>

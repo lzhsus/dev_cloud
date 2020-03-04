@@ -1,0 +1,44 @@
+/* communitys/musics/musics.wxss *//* communitys/kd/kd.wxss */
+.input-box{
+    margin: 20rpx auto;
+    width: 710rpx;
+    background:#fff;
+    border-radius: 4px;overflow: hidden;
+    display: flex;justify-content: space-between;align-items: center;
+    padding: 12rpx 20rpx;box-sizing: border-box;
+}
+input{
+    display: block;width: 600rpx;height: 80rpx;line-height: 80rpx;
+}
+button{
+    display: block;
+    width: 80rpx;height: 80rpx;line-height: 80rpx;
+    text-align: center;
+    padding: 0;
+}
+
+.ul{
+    margin: 20rpx auto;
+    width: 710rpx;min-height: 300rpx;
+    background:#fff;
+    border-radius: 4px;overflow: hidden;
+    display: flex;justify-content: space-between;align-items: center;
+    flex-direction: column;
+    padding: 12rpx 20rpx;box-sizing: border-box;
+}
+.ul .li{
+    width: 100%;
+    margin: 12rpx 0;
+    padding: 0 12rpx;box-sizing: border-box;
+    display: flex;justify-content:space-between;align-items:center;
+}
+.ul .li .time{
+    width: 160rpx;
+    font-size: 12px;color: #ccc;
+    text-align: left;
+}
+.ul .li .content{
+    width: 440rpx;
+    font-size: 12px;color: #000;
+    text-align: left;
+}

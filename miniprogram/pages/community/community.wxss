@@ -1,0 +1,18 @@
+/* pages/community/community.wxss */
+page {
+    background: #f6f6f6;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+#community-page {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex: 1;
+}
+
+.community-page-container {
+    width: 710rpx;height: 100%;margin:auto;
+    display: flex;justify-content: flex-start;flex-direction: column;flex: 1;
+}

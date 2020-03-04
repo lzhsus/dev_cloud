@@ -175,7 +175,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        wx.request({
+          url: 'https://v1.alapi.cn/api/mingyan',
+        })
     },
     /**
      * 生命周期函数--监听页面显示

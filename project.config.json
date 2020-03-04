@@ -2,7 +2,7 @@
 	"miniprogramRoot": "miniprogram/",
 	"cloudfunctionRoot": "cloudfunctions/",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": false,
 		"enhance": false,
 		"postcss": false,
@@ -91,6 +91,27 @@
 					"id": -1,
 					"name": "pages/calendar/calendar",
 					"pathName": "pages/calendar/calendar",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/community/community",
+					"pathName": "pages/community/community",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "communitys/kd/kd",
+					"pathName": "communitys/kd/kd",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "communitys/musics/musics",
+					"pathName": "communitys/musics/musics",
 					"scene": null
 				}
 			]

@@ -1,0 +1,59 @@
+<!--pages/calendar/calendar.wxml-->
+<view class="calendar-page" id="calendar-page">
+    <view class="calendar-page-container" wx:if="{{pageShow}}">
+        <view class="calendar-box">
+            <view wx:if="{{isClickToday!=-1}}" class="new-day" bindtap="goNewDay">今天</view>
+            <!-- 日历年月 -->
+            <view class='calendar_title flex_nowrap'>
+                <view class='icon' bindtap='lastMonth'> - </view>
+                <view>{{year}}年{{month}}月</view>
+                <view class='icon' bindtap='nextMonth'> + </view>
+            </view>
+            <!-- 日历主体 -->
+            <view class='calendar'>
+                <view class='header'>
+                    <view wx:for='{{date}}' wx:key='index'
+                        class='{{(index == todayIndex) && isTodayWeek ? "weekMark" : ""}}'>
+                            {{item}}
+                            <view></view>
+                    </view>
+                </view>
+
+                <view class='date-box'>
+                    <view wx:for='{{dateArr}}' wx:key='index'
+                        class='{{isClickToday!=-1?(isClickToday==item.isToday?"nowDayClick":""):(isToday == item.isToday ? "nowDay" : "")}}'>
+                            <view class='date-head' bindtap='lookHuoDong' data-year='{{year}}' data-month='{{month}}' data-datenum='{{item.dateNum}}'>
+                                <view wx:if="{{false}}">{{item.dateNum}}</view>
+                                <view wx:elif="{{!item.static}}" class="item-color">{{item.dateNum}}</view>
+                                <view wx:elif="{{item.static==1}}" class="item-color1">{{item.dateNum}}</view>
+                                <view wx:elif="{{item.static==2}}" class="item-color2">{{item.dateNum}}</view>
+                                <view wx:elif="{{item.static==3}}" class="item-color3">{{item.dateNum}}</view>
+                                <view wx:elif="{{item.static==5}}" class="item-color5">{{item.dateNum}}</view>
+                            </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="static-box">
+            <view class="li">月经期</view>
+            <view class="li">预测期</view>
+            <view class="li">易孕期</view>
+            <view class="li">安全期</view>
+            <view class="li">排卵期</view>
+        </view>
+        <view class="radio-box">
+            <view class="name">爱看的积分</view>
+            <view class="radio" bindtap="changeRadio">
+                <view class="{{radioIndex==1?'item active_one':'item'}}">是</view>
+                <view class="{{radioIndex==2?'item active_tow':'item'}}">否</view>
+                <picker wx:if="{{radioIndex==2}}" class="picker-box" mode="date" value="{{time}}" start="{{start}}" end="{{end}}"          bindchange="bindTimeChange">
+                    <view class="picker"></view>
+                </picker>
+            </view>
+            <view class="show" bindtap="goMy" wx:if="{{!userInfo.openid}}"></view>
+        </view>
+        <view class="msg-box" wx:if="{{true}}">
+            <view>{{dayInfoObj.static_txt}}</view>
+        </view>
+    </view> 
+</view>

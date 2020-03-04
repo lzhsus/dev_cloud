@@ -1,4 +1,5 @@
 // pages/home/home.js
+const app = getApp()
 const db = wx.cloud.database();
 const _ = db.command;//查询指令
 Page({
@@ -7,6 +8,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        pageShow:false,
         radioIndex: 2,
         date_time: "",
         starg: "未知期",
@@ -35,7 +37,8 @@ Page({
                         // data 传入需要局部更新的数据
                         data: {
                             // 表示将 done 字段置为 true
-                            period_reality_continue_long: _this.data.periodobj.new_time
+                            period_reality_continue_long: _this.data.periodobj.new_time,
+                            updata_time:app.common.getNewTime()
                         },
                         success: function(res) {
                             var periodobj=_this.data.periodobj
@@ -63,7 +66,8 @@ Page({
             period_time:e.detail.value,
             openid:this.data.userInfo.openid,
             period_continue_long:this.data.periodobj.period_continue_long||2,
-            period_month_long:this.data.periodobj.period_month_long||15
+            period_month_long:this.data.periodobj.period_month_long||15,
+            create_time:app.common.getNewTime()
         }
         // return
         var _this =this;
@@ -78,12 +82,12 @@ Page({
                     duration: 2000
                 })
                 
-                data_info.new_time = _this.getTime2Time(_this.getTime(),e.detail.value)+1
+                data_info.new_time = app.common.getTimeToTimeDay(app.common.getTime(),e.detail.value)+1
                 _this.setData({
                     radioIndex: 1,
                     periodobj:data_info,
                     date_time: e.detail.value,
-                    endTime:_this.dayTime(data_info.period_continue_long,e.detail.value)
+                    endTime:app.common.getDayEndTime(data_info.period_continue_long,e.detail.value)
                 })
                 _this.getPeriodList();
             },
@@ -99,12 +103,6 @@ Page({
         wx.switchTab({
             url:"/pages/my/my"
         })
-    },
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad: function (options) {
-
     },
 
     getList() {
@@ -128,21 +126,11 @@ Page({
             }
         })
     },
-    dayTime(day,oldTime){
-        var date1 = new Date(oldTime);
-        var date2 = new Date(oldTime);
-		date2.setDate(date1.getDate()+day);
-		var time2 = date2.getFullYear()+"-"+(date2.getMonth()+1)+"-"+date2.getDate();
-        return time2;
-    },
-    getTime2Time($time1, $time2){
-        var time1 = arguments[0], time2 = arguments[1];
-        time1 = Date.parse(time1)/1000;
-        time2 = Date.parse(time2)/1000;
-        var time_ = time1 - time2;
-        return (time_/(3600*24));
-    },
     getPeriodList() {
+        wx.showLoading({
+            title:'加载中',
+            mask:true
+        });
         var _this = this;
         db.collection('db_period_list').where({
             openid: _this.data.userInfo.openid
@@ -154,18 +142,20 @@ Page({
                     if(data.length){
                         const dataObj = data[data.length-1]
                         // 当前时间
-                        dataObj.new_time = _this.getTime2Time(_this.getTime(),dataObj.period_time)+1
+                        dataObj.new_time = app.common.getTimeToTimeDay(app.common.getTime(),dataObj.period_time)+1
+                        dataObj.static_txt = decodeURIComponent(dataObj.static_txt)
                         // period_time
                         // period_long
                         console.log('dataObj',dataObj)
                         var radioIndex=1
                         if(dataObj.period_reality_continue_long||dataObj.new_time>dataObj.period_continue_long){
+                            
                             radioIndex=2
                         }
                         _this.setData({
                             periodobj:dataObj,
                             radioIndex:radioIndex,
-                            endTime:_this.dayTime(dataObj.period_continue_long,dataObj.period_time)
+                            endTime:app.common.getDayEndTime(dataObj.period_continue_long,dataObj.period_time)
                         }) 
                     }
                 }else{
@@ -174,81 +164,32 @@ Page({
                         showCancel: false
                     })
                 }
+                wx.hideLoading()
+                _this.setData({
+                    pageShow:true
+                })
             }
         })
     },
     /**
-     * 生命周期函数--监听页面初次渲染完成
+     * 生命周期函数--监听页面加载
      */
-    onReady: function () {
+    onLoad: function (options) {
 
     },
-
     /**
      * 生命周期函数--监听页面显示
      */
-    getTime: function (date) {
-        date = date || new Date();
-        const year = date.getFullYear()
-        const month = date.getMonth() + 1
-        const day = date.getDate()
-        const hour = date.getHours()
-        const minute = date.getMinutes()
-        const second = date.getSeconds()
-
-        var formatNumber = n => {
-            n = n.toString()
-            return n[1] ? n : '0' + n
-        }
-        return [year, month, day].map(formatNumber).join('-')
-
-    },
     onShow: function () {
-        
         let userInfo=wx.getStorageSync('userInfo');
         this.setData({
-            userInfo:userInfo
-        })
-        const end = this.getTime()
-        this.setData({
-            end: end
+            userInfo:userInfo,
+            end:app.common.getTime()//可选择的最后时间
         })
         this.getList();
         this.getPeriodList()
     },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
     onShareAppMessage: function () {
-
-    }
+        // return custom share data when user share.
+    },
 })

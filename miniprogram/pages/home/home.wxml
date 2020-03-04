@@ -1,15 +1,15 @@
 <!--pages/home/home.wxml-->
 <view class="home-page" id="home-page">
-    <view class="home-page-container">
+    <view class="home-page-container" wx:if="{{pageShow}}">
         <view class="container-top" wx:if="{{radioIndex==2}}">
             <view class="title">无记录</view>
             <view class="desc">您还没有任何记录</view>
-            <view class="hint">{{starg}}</view>
+            <view class="hint">{{periodobj.static_txt}}</view>
         </view>
         <view class="container-top" wx:else>
             <view class="title">今天是月经期</view>
             <view class="desc">第<text>{{periodobj.new_time}}</text>天</view>
-            <view class="hint">月经期</view>
+            <view class="hint">{{periodobj.static_txt}}</view>
             <view class="hint-2">预计经期结束日{{endTime}}</view>
         </view>
         <view class="radio-box">

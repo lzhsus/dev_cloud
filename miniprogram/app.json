@@ -16,7 +16,8 @@
         "pages/im/room/room",
         "pages/my/my",
         "pages/periodset/periodset",
-        "pages/recordlist/recordlist"
+        "pages/recordlist/recordlist",
+        "pages/calendar/calendar" 
     ],
     "tabBar": {
         "list": [
@@ -25,9 +26,15 @@
             "text": "主页"
         },
         {
+            "pagePath": "pages/calendar/calendar",
+            "text": "日期"
+        },
+        {
             "pagePath": "pages/my/my",
             "text": "个人中心"
         }
+
+        
         ]
     },
     "window": {

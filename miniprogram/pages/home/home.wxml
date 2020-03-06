@@ -1,7 +1,7 @@
 <!--pages/home/home.wxml-->
 <view class="home-page" id="home-page">
     <view class="home-page-container" wx:if="{{pageShow}}">
-        <view class="container-top" wx:if="{{radioIndex==2}}">
+        <!-- <view class="container-top" wx:if="{{radioIndex==2}}">
             <view class="title">无记录</view>
             <view class="desc">您还没有任何记录</view>
             <view class="hint">{{periodobj.static_txt}}</view>
@@ -22,7 +22,7 @@
                 </picker>
             </view>
             <view class="show" bindtap="goMy" wx:if="{{!userInfo.openid}}"></view>
-        </view>
+        </view> -->
         <view class="mian-box">
             <view class="li" wx:for="{{msgList}}" wx:key="index">
                 <view class="img-box">
@@ -31,6 +31,18 @@
                 <view class="msg-box">
                     <view class="title">{{item.title}}</view>
                     <view class="desc">{{item.desc}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="mian-box2">
+            <view class="li" wx:for="{{msgList2}}" wx:key="index">
+                <view class="img-box" style='background-image:url({{item.imgsrc}})'>
+
+                </view>
+                <view class="msg-box">
+                    <view class="title">{{item.title}}</view>
+                    <view class="desc">{{item.digest}}</view>
+                    <view class="source">{{item.source}}</view>
                 </view>
             </view>
         </view>

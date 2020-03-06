@@ -1,0 +1,24 @@
+<!--index.wxml-->
+<view>
+	<!-- 侧边滑动菜单 -->
+	<view class="page-slidebar">
+		<view class="page-content">
+			<view class="account-info">
+				<view class="account-info-item">用户：{{YHMC}}</view>
+				<view class="account-info-item">账号：{{YHZH}}</view>
+				<view class="account-info-item">角色：{{YHJS}}</view>
+				<view class="account-info-item">版本：{{version}}</view>
+			</view>
+		</view>
+	</view> 
+	<!-- 主页内容 -->
+	<view bindtouchmove="tap_drag" bindtouchend="tap_end" bindtouchstart="tap_start" class="page-top {{open ? ['c-state','cover'] : ''}} ">
+		<view class="usermotto">
+			<text class="user-motto">{{motto}}111</text>
+		</view>
+	</view>
+	<!-- 添加侧拉悬浮按钮 -->
+	<view bindtap="openSlider">
+		<image class="floatbutton" src="../../images/icon-item.png"></image>
+	</view>
+</view>

@@ -17,7 +17,8 @@ Page({
         msgList:[],
         periodobj:{},
         userInfo:{},
-        endTime:''
+        endTime:'',
+        msgList2L:[]
     },
     // 页面方法
     changeRadio() {
@@ -104,7 +105,26 @@ Page({
             url:"/pages/my/my"
         })
     },
-
+    getWenzhuang(){
+        var _this =this;
+        wx.request({
+            url: 'https://v1.alapi.cn/api/new/toutiao',
+            success(res){
+                res = res.data
+                if(res.msg == 'success'){
+                    _this.setData({
+                        msgList2:res.data
+                    })
+                }else{
+                    wx.showModal({ 
+                        content: res.msg,
+                        showCancel: false
+                    })
+                }
+                console.log(res)
+            }
+        })
+    },
     getList() {
         var _this = this;
         db.collection('db_demo').where({
@@ -171,18 +191,28 @@ Page({
             }
         })
     },
+    getApiStatic() {
+        var _this = this;
+        db.collection('db_static').where({
+            
+        }).get({
+            success: function (res) {
+                
+            }
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        wx.request({
-          url: 'https://v1.alapi.cn/api/mingyan',
-        })
-    },
+     
+       this.getWenzhuang()
+    }, 
     /**
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        this.getApiStatic()
         let userInfo=wx.getStorageSync('userInfo');
         this.setData({
             userInfo:userInfo,

@@ -16,3 +16,6 @@ page {
     width: 710rpx;height: 100%;margin:auto;
     display: flex;justify-content: flex-start;flex-direction: column;flex: 1;
 }
+.module{
+    margin-top: 20rpx;
+}

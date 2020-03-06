@@ -1,0 +1,9 @@
+<!--communitys/yuer/yuer.wxml-->
+<view class="category">
+    <view class="item" wx:for="{{yuerlist}}" wx:key="index">
+        <view class="img-box">
+            <image src="{{item.url}}" mode="widthFix"></image>
+            <view class="static" wx:if="{{item.static}}">已学习</view>
+        </view>
+    </view>
+</view>

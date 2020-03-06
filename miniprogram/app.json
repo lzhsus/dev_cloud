@@ -29,9 +29,6 @@
         {
             "pagePath": "pages/calendar/calendar",
             "text": "日期"
-        },{
-            "pagePath": "pages/community/community",
-            "text": "阅读" 
         },
         {
             "pagePath": "pages/my/my",
@@ -47,7 +44,9 @@
             "pages": [
               "index/index",
               "kd/kd",
-              "musics/musics"
+              "musics/musics",
+              "sc/sc",
+              "yuer/yuer"
             ]
           }
     ],

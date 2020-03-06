@@ -1,0 +1,26 @@
+/* communitys/sc/sc.wxss */
+.ul{
+    width: 710rpx;margin:20rpx auto;
+    background: #fff;min-height: 200rpx;
+    border-radius: 20rpx;overflow: hidden;
+}
+.ul .li{
+    padding: 12rpx;box-sizing: border-box;
+    display: flex;justify-content: flex-start;align-content: center;
+}
+.ul .li .img-box{
+    width: 120rpx;height: 120rpx;
+}
+.ul .li .img-box image{
+    display: block;width: 100%;
+}
+.ul .li .msg-box{
+    width: 420rpx;
+}
+
+.ul .li .msg-box .name{
+    font-size: 14px;color: #999;
+}
+.ul .li .msg-box .price{
+    font-size: 12px;color: green;
+}

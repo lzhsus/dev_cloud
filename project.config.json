@@ -112,6 +112,20 @@
 					"id": -1,
 					"name": "communitys/musics/musics",
 					"pathName": "communitys/musics/musics",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "communitys/sc/sc",
+					"pathName": "communitys/sc/sc",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "communitys/yuer/yuer",
+					"pathName": "communitys/yuer/yuer",
 					"scene": null
 				}
 			]

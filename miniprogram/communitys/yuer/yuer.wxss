@@ -1,0 +1,22 @@
+/* communitys/yuer/yuer.wxss */
+.category{
+    width: 710rpx;margin: 20rpx auto;
+    display: flex;justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.item{
+    width: 220rpx;height: 220rpx;
+}
+.item image{
+    display: block;width: 100%;
+}
+.item .img-box{
+    width: 220rpx;height: 220rpx;
+    position: relative;
+}
+.item .img-box image{
+    display: block;width: 100%;
+}
+.item .img-box .static{
+    font-size: 12px;color: green;
+}

@@ -1,8 +1,11 @@
 <!--pages/community/community.wxml-->
 <view class="calendar-page" id="calendar-page">
     <view class="calendar-page-container">
-        <view class="kd" bindtap="lookKD">
+        <view class="kd module" bindtap="lookKD">
             <button type="primary">快递查询</button>
+        </view>
+        <view class="kd module" bindtap="lookSC">
+            <button type="primary">进入商场</button>
         </view>
     </view>
 </view>

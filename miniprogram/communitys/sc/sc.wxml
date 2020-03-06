@@ -1,0 +1,13 @@
+<!--communitys/sc/sc.wxml-->
+
+<view class="ul" wx:if="{{pageShow}}">
+    <view class="li" wx:for="{{spList}}" wx:key="index">
+        <view class="img-box">
+            <image src="{{item.img}}" mode="widthFix"></image>
+        </view>
+        <view class="msg-box">
+            <view class="name">{{item.name}}</view>
+            <view class="price">{{item.price}}</view>
+        </view>
+    </view>
+</view>

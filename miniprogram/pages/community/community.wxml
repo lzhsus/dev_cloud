@@ -1,11 +1,14 @@
 <!--pages/community/community.wxml-->
 <view class="calendar-page" id="calendar-page">
     <view class="calendar-page-container">
-        <view class="kd module" bindtap="lookKD">
+        <view class="kd module" bindtap="lookKD" wx:if="{{apiStatic.kd==1}}">
             <button type="primary">快递查询</button>
         </view>
-        <view class="kd module" bindtap="lookSC">
+        <view class="kd module" bindtap="lookSC" wx:if="{{apiStatic.sc==1}}">
             <button type="primary">进入商场</button>
+        </view>
+        <view class="kd module" bindtap="lookSH" wx:if="{{apiStatic.sh==1}}">
+            <button type="primary">记录生活</button>
         </view>
     </view>
 </view>

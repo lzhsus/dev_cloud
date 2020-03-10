@@ -3,10 +3,16 @@
     width: 710rpx;margin:20rpx auto;
     background: #fff;min-height: 200rpx;
     border-radius: 20rpx;overflow: hidden;
+    padding: 20rpx 40rpx;box-sizing: border-box;
 }
 .ul .li{
-    padding: 12rpx;box-sizing: border-box;
+    margin-top: 30rpx;
+    /* padding: 12rpx;box-sizing: border-box; */
     display: flex;justify-content: flex-start;align-content: center;
+    border-bottom: 1px  solid rgb(240, 225, 225);
+}
+.ul .li:first-child{
+    margin-top: 0rpx;
 }
 .ul .li .img-box{
     width: 120rpx;height: 120rpx;
@@ -15,7 +21,8 @@
     display: block;width: 100%;
 }
 .ul .li .msg-box{
-    width: 420rpx;
+    width: 100%;
+    position: relative;
 }
 
 .ul .li .msg-box .name{
@@ -23,4 +30,12 @@
 }
 .ul .li .msg-box .price{
     font-size: 12px;color: green;
+}
+.ul .li .msg-box .btn{
+    position: absolute;right: 20rpx;bottom: 20rpx;
+    font-size: 12px;color: rgb(238, 169, 169);
+    width: 120rpx;height: 50rpx;
+    text-align: center;line-height: 50rpx;
+    border-radius: 4px;overflow: hidden;
+    background: rgb(26, 151, 235);
 }

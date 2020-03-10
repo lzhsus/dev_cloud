@@ -330,7 +330,8 @@ Page({
                 // data 传入需要局部更新的数据
                 data: {
                     // 表示将 done 字段置为 true
-                    static_txt: encodeURIComponent(obj.static_txt)
+                    static_txt: encodeURIComponent(obj.static_txt),
+                    static_txt_c: obj.static_txt
                 },
                 success: function (res) {
                     _this.setData({

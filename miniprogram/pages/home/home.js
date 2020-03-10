@@ -18,7 +18,11 @@ Page({
         periodobj:{},
         userInfo:{},
         endTime:'',
-        msgList2L:[]
+        msgList2L:[],
+        msgList2:[],
+        module:1,
+        page:1,
+        lastPage:false
     },
     // 页面方法
     changeRadio() {
@@ -26,7 +30,7 @@ Page({
         if(_this.data.radioIndex==2){
             return
         }
-        console.log(_this.data.periodobj._id)
+        console.log(_this.data.periodobj._id);
         wx.showModal({
             title: '提示',
             content: '确认自行终止此次经期记录!',
@@ -107,13 +111,39 @@ Page({
     },
     getWenzhuang(){
         var _this =this;
+        wx.showLoading({
+            title: '加载中',
+            mask: true
+        });
         wx.request({
-            url: 'https://v1.alapi.cn/api/new/toutiao',
+            url: 'https://v1.alapi.cn/api/new/toutiao?start=' + _this.data.page,
             success(res){
                 res = res.data
                 if(res.msg == 'success'){
+                    var msgList2 = _this.data.msgList2||[];
+                    var page = _this.data.page
+                    if (page <= 1) {
+                        msgList2 = []
+                    }
+                    if (app.stopPullDownRefresh) {
+                        wx.stopPullDownRefresh()
+                        app.stopPullDownRefresh = false
+                    } 
+                    if(page>1){
+                        for (const key in res.data) {
+                            if (res.data.hasOwnProperty(key)) {
+                                const element = res.data[key];
+                                msgList2.push(element)
+                            }
+                        }
+                    }else{
+                        msgList2 = res.data;
+                    }
+                    page++
+
                     _this.setData({
-                        msgList2:res.data
+                        msgList2: msgList2,
+                        page: page
                     })
                 }else{
                     wx.showModal({ 
@@ -121,7 +151,7 @@ Page({
                         showCancel: false
                     })
                 }
-                console.log(res)
+                wx.hideLoading()
             }
         })
     },
@@ -164,6 +194,7 @@ Page({
                         // 当前时间
                         dataObj.new_time = app.common.getTimeToTimeDay(app.common.getTime(),dataObj.period_time)+1
                         dataObj.static_txt = decodeURIComponent(dataObj.static_txt)
+                        dataObj.static_txt_c = dataObj.static_txt
                         // period_time
                         // period_long
                         console.log('dataObj',dataObj)
@@ -197,29 +228,58 @@ Page({
             
         }).get({
             success: function (res) {
-                
+                if (res.errMsg == 'collection.get:ok') {
+                    let data = res.data;
+                    const dataObj = data[0];
+                    if (dataObj.alapi == 1){
+                        // _this.getWenzhuang()
+                        _this.getList();
+                    } else if (dataObj.alapi == 2){
+                        _this.getWenzhuang()
+                    }
+                }else{
+
+                }
             }
+        })
+    },
+    goWbeViewPage(e){
+        var item = e.currentTarget.dataset.item;
+        wx.navigateTo({
+            url: '/pages/detail/detail?docid=' + item.docid,
         })
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-     
-       this.getWenzhuang()
+        this.getApiStatic()
+        
     }, 
     /**
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        this.getApiStatic()
         let userInfo=wx.getStorageSync('userInfo');
         this.setData({
             userInfo:userInfo,
             end:app.common.getTime()//可选择的最后时间
         })
-        this.getList();
         this.getPeriodList()
+    },
+    // 上拉监控
+    onPullDownRefresh(){     
+        this.setData({
+            page:1,
+            lastPage:false
+        })       
+        app.stopPullDownRefresh = true
+        this.getWenzhuang()
+    },
+    // 到底监控
+    onReachBottom(){
+        if( this.data.lastPage ) return
+        this.getWenzhuang()
     },
     onShareAppMessage: function () {
         // return custom share data when user share.

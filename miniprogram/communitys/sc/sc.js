@@ -11,6 +11,10 @@ Page({
         pageShow:false,
         spList:[]
     },
+    goPay(e){
+        const item = e.currentTarget.dataset.item;
+        console.log(item)
+    },
     getList(){
         wx.showLoading({
             title:'加载中',

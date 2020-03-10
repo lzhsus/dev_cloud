@@ -1,0 +1,55 @@
+<!--pages/detail/detail.wxml-->
+<view class="page-content">
+    <view class="top-box">
+        <view class="title">{{detailObj.title}}</view>
+    </view>
+    <view class="source-box">
+        <view class="source">{{detailObj.source}}</view>
+        <view class="time">{{detailObj.ptime}}</view>
+        <view class="reply-board" wx:if="{{detailObj.replyBoard&&detailObj.replyCount}}">
+            <view class="title">跟帖</view><view class="num">{{detailObj.replyCount}}</view>
+        </view>
+    </view>
+    <text class="share-digest">{{detailObj.body}}</text>
+    <view class="img-box" wx:if="{{detailObj.img&&detailObj.img.length}}">
+        <image wx:for="{{detailObj.img}}" wx:key='index' src="{{item.src}}" mode="widthFix"></image>
+    </view>
+    <view class="spinfo-box" wx:if="{{detailObj.spinfo.length}}">{{detailObj.spinfo.lenght}}
+        <view class="item-box" wx:for="{{detailObj.spinfo}}" wx:key="index">
+            <view class="title">{{item.sptype}}</view>
+            <text class="main">{{item.spcontent}}</text>
+        </view>
+    </view>
+    <view class="relative_res" wx:if="{{detailObj.relative_res&&detailObj.relative_res.length}}">
+        <view class="ul">
+            <view class="li" wx:for="{{detailObj.relative_res}}" wx:key="index">
+                <view class="tite">{{item.title}}</view>
+                <view class="hint">{{item.keyword}}</view>
+                <view class="img-box">
+                    <image src="{{item.imgsrc}}" mode="widhtFix"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="relative_res" wx:if="{{detailObj.relative_sys&&detailObj.relative_sys.length}}">
+        <view class="ul">
+            <view class="li" wx:for="{{detailObj.relative_sys}}" wx:key="index">
+                <view class="tite">{{item.title}}</view>
+                <view class="hint">{{item.keyword}}</view>
+                <view class="digest">{{item.digest}}</view>
+                <view class="img-box">
+                    <image src="{{item.imgsrc}}" mode="widhtFix"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 栏目类别 -->
+    <view class="topiclist_news" wx:if="{{detailObj.topiclist_news&&detailObj.topiclist_news.length}}">
+        <view class="li" wx:for="{{detailObj.topiclist_news}}" wx:key="index">{{item.tname}}</view>
+    </view>
+    <view class="statement" wx:if="{{detailObj.statement}}">{{detailObj.statement}}</view>
+    <view class="foder">
+        <view class="name">责任编辑：{{detailObj.ec}}</view>
+        <view class="linke">{{detailObj.threadVote}} 人喜欢</view>
+    </view>
+</view>

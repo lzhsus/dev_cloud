@@ -8,7 +8,8 @@ Page({
      */
     data: {
         userInfo: {},
-        pageShow:false
+        pageShow:false,
+        apiStatic:{}
     },
     goTopage(){
         if(!this.data.userInfo.openid){
@@ -36,7 +37,12 @@ Page({
           url: '/pages/recordlist/recordlist',
         })
 
-    },  
+    }, 
+    gotoMoreBtn() {
+        wx.navigateTo({
+            url: '/pages/community/community',
+        })
+    } ,
     // 获取用户信息
     onGetUserInfo: function (e) {
         wx.showLoading({
@@ -161,11 +167,30 @@ Page({
             }
         })
     },
+
+    getApiStatic() {
+        var _this = this;
+        db.collection('db_static').where({
+
+        }).get({
+            success: function (res) {
+                if (res.errMsg == 'collection.get:ok') {
+                    let data = res.data;
+                    const dataObj = data[0];
+                    _this.setData({
+                        apiStatic: dataObj
+                    })
+                } else {
+
+                }
+            }
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        
+        this.getApiStatic()
     },
     /**
      * 生命周期函数--监听页面显示

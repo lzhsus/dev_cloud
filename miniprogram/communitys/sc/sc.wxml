@@ -8,6 +8,7 @@
         <view class="msg-box">
             <view class="name">{{item.name}}</view>
             <view class="price">{{item.price}}</view>
+            <view class="btn" bindtap="goPay" data-item="{{item}}">购买</view>
         </view>
     </view>
 </view>

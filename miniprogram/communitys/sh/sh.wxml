@@ -1,5 +1,5 @@
 <!--communitys/sh/sh.wxml-->
-<view class="page-conente">
+<!-- <view class="page-conente">
      <view class="topics-box" wx:for="{{posts}}" wx:key wx:for-item="post">  
                 <view class="topics-item">
                     <view class="topics-head">
@@ -63,4 +63,4 @@
                 </view>     
             </view>
     <view class="add-img"></view>
-</view>
+</view> -->

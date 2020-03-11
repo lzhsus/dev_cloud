@@ -177,6 +177,7 @@ Page({
                 if (res.errMsg == 'collection.get:ok') {
                     let data = res.data;
                     const dataObj = data[0];
+                    console.log(dataObj)
                     _this.setData({
                         apiStatic: dataObj
                     })

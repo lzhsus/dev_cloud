@@ -1,343 +1,108 @@
 /* communitys/sh/sh.wxss */
-
-.add-img {
-    position: fixed;
-    right: 30rpx;
-    bottom: 30rpx;
-    width: 50rpx;
-    height: 50rpx;
-    background: url(https://6465-demo-yk46q-1301447037.tcb.qcloud.la/db_cloud/sh/addimg.png?sign=9ed437ec3b0f08affe9bddb8f6eb729e&t=1583838973) center center no-repeat;
-    background-size: cover;
-}
-
-.topics-box {
-}
-
-.topics-item {
-}
-
-.topics-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20rpx;
-}
-
-.topics-head-left {
-    display: flex;
-}
-
-.topics-head-left .avatar {
-    width: 78rpx;
-    height: 78rpx;
-}
-
-.topics-head-left .userinfo {
-    display: flex;
-    flex-direction: column;
-    padding-left: 20rpx;
-    justify-content: center;
-}
-
-.topics-head-left .userinfo .nickname {
-    font-size: 15px;
-    font-weight: 800;
-}
-
-.topics-head-left .userinfo .time {
-    font-size: 10px;
-    color: #767979;
-}
-
-.topics-head-right .status {
-    background: #ff5959;
-    color: #fff;
-    font-size: 12px;
-    padding: 6rpx 16rpx;
-}
-
-.imgtop-title {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    color: #fff;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 2;
-    font-size: 16px;
-    line-height: 1.2;
-}
-
-.imgtop-title text {
-    display: block;
-    padding: 6px 10px;
-}
-
-.post-card-box {
-    display: flex;
+/*  */
+.page-content{
+    padding: 20rpx;box-sizing: border-box;
+    display: flex;justify-content: flex-start;align-items: flex-start;
     flex-wrap: wrap;
-    justify-content: space-between;
+}
+.page-content .li{
+    width: 220rpx;height: 220rpx;
+    border-radius: 4px;
+    margin-bottom: 20rpx;
+    box-shadow: 0 0 4px #ccc;
     position: relative;
 }
+.page-content .li:nth-child(3n-1) {
+    margin: 0 25rpx;
+}
+.page-content .li .img{
+    width: 100%;height: 100%;
+    background-size:cover;
+    border-radius: 5rpx;
+    overflow: hidden; 
+    display: flex;justify-content: center;align-items: center;
+}
+.page-content .li .img .image{
+    display: block;width: 100%;
+}
+                 
+/*  */
+.add-img{
+    position: fixed;bottom: 30rpx;right: 30rpx;z-index: 999999;
+    width: 60rpx;height: 60rpx;
+    background: #fff;
+    padding: 12rpx;box-sizing: border-box;
+    border-radius: 12rpx;overflow: hidden;
+    display: flex;justify-content: center;align-items: center;
+}
+.add-img image{
+    display: block;width: 100%;
+}
+.pop-content{
+    position: fixed;top: 0;left: 0;z-index: 99;
+    width: 100%;height: 100%;
+    background-color:rgba(0,0,0,0.4);
 
-.card-video {
+}
+.images-box-pop{
+    position: relative;top: 50%;left: 50%;z-index: 99999;
+    transform: translate(-50%,-50%);
+    width: 700rpx;min-height: 420rpx;
+    background: #fff;opacity: 1;
+    padding: 40rpx 25rpx 140rpx;box-sizing: border-box;
+    display: flex;justify-content: flex-start;align-items: flex-start;
+    flex-wrap: wrap;
+    border-radius: 20rpx;
+}
+.images-box-pop::after{
+    display: block;content: '';
+    position: absolute;bottom: 120rpx;left: 50%;
+    transform: translateX(-50%);
+    width: 650rpx;height: 1px;
+    background: rgb(243, 242, 242);
+}
+.images-box-pop .submit{
+    position: absolute;bottom: 20rpx;left: 50%;
+    transform: translateX(-50%);
+    width: 290rpx;
+    border-radius: 10px;overflow: hidden;
+    box-shadow: 0 0 4px #ccc;
+    
+}
+.images-box-pop .submit image{
+    display:block;width:100%;
+}
+.images-box-pop .item-li{
+    width: 200rpx;height: 200rpx;
+    border-radius: 4px;
+    margin-bottom: 20rpx;
+    box-shadow: 0 0 4px #ccc;
     position: relative;
-    width: 400rpx;
-    margin-left: 20rpx;
 }
-
-.card-video .img {
-    width: 100%;
-    display: block;
-    height: auto;
-}
-
-.card-video::after {
-    height: 60rpx;
-    width: 60rpx;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    content: "";
-    background: url("http://rplay.eintone.com/weapp/static/addpost/play-02.png?v=201809131659");
+.images-box-pop .item-li .close{
+    position: absolute;top: -20rpx;right: -20rpx;
+    width: 40rpx;height: 40rpx;
+    border-radius: 50%;
+    box-shadow: 0 0 4px #ccc;
+    background: url(https://6465-demo-yk46q-1301447037.tcb.qcloud.la/close-icon.png?sign=977ad0ce95f4a7a653a37bc982c8f5e0&t=1584007390) center center no-repeat;
     background-size: cover;
 }
-
-.post-card-box view {
-    width: 250rpx;
-    height: 250rpx;
-    box-sizing: border-box;
-    /* background: url("https://rfile.eintone.com/images/1878631519265690503.jpg") no-repeat center center;
-            background-size: cover; */
-    background: #eff0f6;
-    border-right: 2px solid #fff;
-    border-bottom: 2px solid #fff;
+.images-box-pop .item-li .img-box{
+    width: 100%;height: 100%;overflow: hidden;
+    display: flex;justify-content: center;align-items: center;
 }
-
-.post-card-box view image {
-    width: 100%;
-    height: 100%;
-    display: block;
+.images-box-pop .item-li image{
+    display: block;width: 100%;
 }
-
-.post-card-box.grid-8 view:nth-child(1), .post-card-box.grid-8 view:nth-child(2) {
-    width: 50%;
-    height: 375rpx;
+.images-box-pop .item-li:nth-child(3n-1) {
+    margin: 0 25rpx;
 }
-
-.post-card-box.grid-7 view:nth-child(1) {
-    width: 100%;
-    height: 375rpx;
+.images-box-pop .item-li:nth-of-type(7) {
+    margin-bottom: 0;
 }
-
-.post-card-box.grid-5 view:nth-child(1), .post-card-box.grid-6 view:nth-child(1) {
-    width: 500rpx;
-    height: 500rpx;
+.images-box-pop .item-li:nth-of-type(8) {
+    margin-bottom: 0;
 }
-
-.post-card-box.grid-5 view:nth-child(3), .post-card-box.grid-6 view:nth-child(3) {
-    position: absolute;
-    top: 250rpx;
-    right: 0;
-}
-
-.post-card-box.grid-5 view:nth-child(4), .post-card-box.grid-5 view:nth-child(5) {
-    width: 50%;
-}
-
-.post-card-box.grid-4 view {
-    width: 50%;
-    height: 375rpx;
-}
-
-.post-card-box.grid-3 view {
-    width: 100%;
-    height: 375rpx;
-}
-
-.post-card-box.grid-2 view {
-    width: 50%;
-    height: 375rpx;
-}
-
-.post-card-box.grid-1 view {
-    width: 100%;
-    height: 750rpx;
-    border-bottom: 0 solid #fff;
-}
-
-.post-card-box.grid-3 view:nth-child(2), .post-card-box.grid-3 view:nth-child(3) {
-    width: 375rpx;
-}
-
-.post-card-box view:last-child, .post-card-box.grid-3 view:nth-child(1),
-.post-card-box.grid-4 view:nth-child(2), .post-card-box.grid-4 view:nth-child(4),
-.post-card-box.grid-5 view:nth-child(2), .post-card-box.grid-5 view:nth-child(3),
-.post-card-box.grid-6 view:nth-child(2), .post-card-box.grid-6 view:nth-child(3),
-.post-card-box.grid-7 view:nth-child(4), .post-card-box.grid-8 view:nth-child(2),
-.post-card-box.grid-8 view:nth-child(5),
-.post-card-box.grid-9 view:nth-child(3n+3) {
-    border-right: none;
-}
-
-.post-card-box.grid-2 view:nth-child(n+1),
-.post-card-box.grid-3 view:nth-child(n+2),
-.post-card-box.grid-4 view:nth-child(n+3),
-.post-card-box.grid-5 view:nth-child(n+4),
-.post-card-box.grid-6 view:nth-child(n+4),
-.post-card-box.grid-7 view:nth-child(n+5),
-.post-card-box.grid-8 view:nth-child(n+6),
-.post-card-box.grid-9 view:nth-child(n+7) {
-    border-bottom: none;
-}
-
-.zan-box {
-    width: 700rpx;
-    margin: 0 auto;
-    overflow: hidden;
-    padding: 20rpx 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.avatar-list {
-    width: 536rpx;
-    overflow: hidden;
-}
-
-.avatar-list .avatar {
-    width: 52rpx;
-    height: 52rpx;
-    margin-right: 3px;
-    float: left;
-    background: #898989;
-    border-radius: 2px;
-}
-
-.avatar-list  .num {
-    width: 52rpx;
-    height: 52rpx;
-    background: #efefef;
-    font-size: 10px;
-    line-height: 52rpx;
-    display: block;
-    float: left;
-    text-align: center;
-    border-radius: 2px;
-    color: #858585;
-}
-
-.zan {
-    width: 70rpx;
-    height: 46rpx;
-    border-radius: 20rpx;
-    position: relative;
-    background: #efefef url("http://rplay.eintone.com/weapp/static/index/icon-01.png?v=2") no-repeat center top;
-    background-size: 39rpx auto;
-}
-
-.zan::after {
-    border: 0;
-}
-
-.zan   button {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-}
-
-.this {
-    background-position: center bottom;
-}
-
-.share {
-    width: 70rpx;
-    height: 46rpx;
-    border-radius: 20rpx;
-    background: #efefef url("http://rplay.eintone.com/weapp/static/index/share-icon.png") no-repeat center;
-    background-size: 40rpx auto;
-}
-
-.share::after {
-    border: 0;
-}
-
-.label-list {
-    width: 700rpx;
-    margin: 0 auto;
-    font-size: 12px;
-    overflow: hidden;
-}
-
-text {
-    background: #f2f2f2;
-    border-radius: 2px;
-    color: #6f6f6f;
-    display: block;
-    padding: 6rpx 15rpx;
-    margin: 0 10rpx 10rpx 0;
-    float: left;
-}
-
-.topic-title {
-    font-size: 14px;
-    color: #ff5959;
-    font-weight: bold;
-    width: 700rpx;
-    margin: 0 auto;
-}
-
-.topic-name {
-    font-size: 14px;
-    color: #323232;
-    width: 700rpx;
-    margin: 2px auto 15rpx;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    word-break: keep-all;
-    word-wrap: break-word;
-}
-
-.topic-comment {
-    width: 700rpx;
-    margin: 0 auto 40rpx;
-    font-size: 14px;
-    padding: 0 0 15rpx 0;
-    border-bottom: 1px solid #f4f4f4;
-}
-
-.comment-list {
-    color: #787878;
-    padding: 4rpx 0;
-}
-
-.item {
-}
-
-.nickname {
-    font-weight: 800;
-}
-
-.content {
-}
-
-.comment-post {
-    color: #9f9f9f;
-    margin-top: 16rpx;
-}
-
-.input-cover {
-    position: fixed;
-    left: 0;
-    bottom: 100rpx;
-    width: 100%;
-    top: 0;
+.images-box-pop .item-li:nth-of-type(9) {
+    margin-bottom: 0;
 }

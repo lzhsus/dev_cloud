@@ -1,66 +1,24 @@
 <!--communitys/sh/sh.wxml-->
-<!-- <view class="page-conente">
-     <view class="topics-box" wx:for="{{posts}}" wx:key wx:for-item="post">  
-                <view class="topics-item">
-                    <view class="topics-head">
-                        <view class="topics-head-left" @tap="openOtherhomeTap({{post.imageable}},{{post}})">
-                            <image class="avatar" src="{{post.imageable.headimgurl}}" />
-                            <view class="userinfo">
-                                <text class="nickname">{{post.imageable.nickname}}</text>
-                                <text class="time">{{post.time}}</text>
-                            </view>
-                        </view>
-                        <view class="topics-head-right">
-                            <view class="status" wx:if="{{post.is_professional==1}}" style="background-color:#0054a7;">专业评</view>
-                            <view class="status" wx:elif="{{post.is_highlight==1}}">精华帖</view>
-                            <view class="status" wx:else>玩家秀</view>
-                        </view>
-                    </view>
-                    <view style="position:relative;">
-                        <view class="imgtop-title" wx:if="{{post.title}}"><text>{{post.title}}</text></view>
-                        <view wx:if="{{post.type==3}}" class='post-card-box grid-1' @tap="openTopicdetailTap({{post.type}},{{post.id}},{{post}})">
-                            <view wx:for="{{post.images}}" wx:key style="height:350rpx;">
-                                <image src="{{item.img_url}}" mode="aspectFill" />
-                            </view>                        
-                        </view>
-                        <view wx:if="{{post.type==1}}" class='post-card-box grid-{{post.images.length}}' @tap="openTopicdetailTap({{post.type}},{{post.id}},{{post}})">
-                            <view wx:for="{{post.images}}" wx:key>
-                                <image src="{{item.img_url}}" mode="aspectFill" />
-                            </view>                        
-                        </view>
-                    </view>
-                    <view wx:if="{{post.type==2}}" class='card-video' @tap="openTopicdetailTap({{post.type}},{{post.id}},{{post}})">
-                        <image class="img" mode="widthFix" wx:for="{{post.images}}" wx:key src="{{item.img_url}}" />
-                    </view>
-            
-                    <view class="zan-box">
-                        <view class="avatar-list">
-                            <image class="avatar" wx:for="{{post.points}}" wx:if="{{index<8}}" wx:key src="{{item.headimgurl}}" @tap="openOtherhomeTap({{item}},{{post}})" />
-                            <text class="num" wx:if="{{post.points.length>0}}">{{post.point}}</text>
-                        </view>
-                        <button class="share" open-type="share" data-source="postWaterfall" data-type="{{post.type}}" data-title="{{post.title||post.content}}" data-id="{{post.id}}" data-imageUrl="{{post.images[0].img_url}}"></button>
-                        <view class="zan {{post.has_points?'this':''}}">
-                            <button formType="submit" @tap="voteTap({{index}},{{post.id}},{{post}})" data-key="vote"></button>
-                        </view>
-                    </view>
-            
-                    <view class="label-list">
-                        <text wx:for="{{post.tags}}" wx:key>{{item.name}}</text>
-                    </view>
-            
-                    <view class="topic-title" @tap="openTopicTap({{post.topic.id}},{{post}})" wx:if="{{post.topic}}">#{{post.topic.name}}#</view>
-                    <view class="topic-name" @tap="openTopicdetailTap({{post.type}},{{post.id}},{{post}})">{{post.content}}</view>
-            
-                    <view class="topic-comment">
-                        <view class="comment-list">
-                            <view class="item" wx:for="{{post.comments}}" wx:key wx:for-index="i" @tap="commentsTap({{index}},{{item}},{{post}})">
-                                <text class="nickname">{{item.nickname}}：</text>
-                                <text class="content">{{item.to_nickname?'@'+item.to_nickname:''}} {{item.content}}</text>
-                            </view>
-                        </view>
-                        <view class="comment-post" @tap="commentInputToggleTap({{index}},{{post}})">发表评论</view>
-                    </view>
-                </view>     
+    <view class="page-content">
+        <view class="li" wx:for="{{imagesList}}" wx:key="index">
+            <view class="img" bindtap="lookImg" data-item="{{item}}">
+                <image src="{{item.fileID}}" mode="widthFix"/>
             </view>
-    <view class="add-img"></view>
-</view> -->
+        </view>
+    </view>
+  
+    <!-- 弹窗 -->
+    <view class="pop-content" wx:if="{{images.length}}">
+        <view class="images-box-pop">
+            <view class="item-li" wx:for="{{images}}" wx:key='index'>
+                <view class="img-box"><image src="{{item}}" mode="widthFix"></image></view>
+                <view class="close" bindtap="closeImg" data-index="{{index}}"></view>
+            </view>
+            <view class="submit" bindtap="submitBtn"><image src="https://6465-demo-yk46q-1301447037.tcb.qcloud.la/submit.png?sign=0ec2a92b1c04a2f48ef3fc79b60269b0&t=1584008271" mode="widthFix"/></view>
+        </view>    
+    </view>
+
+    <view class="add-img" bindtap="chooseImage">
+        <image src="https://6465-demo-yk46q-1301447037.tcb.qcloud.la/db_cloud/sh/addimg.png?sign=371408adc096b8f4fc29fb66a1426e3e&t=1584001441" mode="widthFix"></image>
+        <view class="close"></view>
+    </view>

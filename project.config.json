@@ -3,16 +3,16 @@
 	"cloudfunctionRoot": "cloudfunctions/",
 	"setting": {
 		"urlCheck": false,
-		"es6": false,
-		"enhance": false,
-		"postcss": false,
+		"es6": true,
+		"enhance": true,
+		"postcss": true,
 		"minified": false,
 		"newFeature": true,
 		"coverView": true,
 		"nodeModules": false,
 		"autoAudits": false,
 		"showShadowRootInWxmlPanel": false,
-		"scopeDataCheck": false,
+		"scopeDataCheck": true,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
@@ -25,7 +25,7 @@
 	},
 	"appid": "wx1314c40d5e143385",
 	"projectname": "yunkaifa1",
-	"libVersion": "2.10.1",
+	"libVersion": "2.10.0",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"compileType": "miniprogram",
@@ -51,7 +51,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
@@ -161,7 +161,7 @@
 					"id": -1,
 					"name": "communitys/sh/sh",
 					"pathName": "communitys/sh/sh",
-					"query": "link= http%3A%2F%2F3g.163.com%2Fnews%2F20%2F0310%2F13%2FF7C2JICD0001899O.html",
+					"query": "",
 					"scene": null
 				}
 			]

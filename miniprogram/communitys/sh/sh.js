@@ -88,7 +88,7 @@ Page({
             title: '上传中...',
         })
         // 上传资源(图片，文件名称)
-        var images = await uploadFiles(this.data.images, 'test')
+        var images = await uploadFiles(this.data.images, 'sh_img')
         // var images = await uploadFile(this.data.images, 'test')
         console.log('images', images)
         // 记录数据

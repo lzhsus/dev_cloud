@@ -1,3 +1,9 @@
+import appConfig from "./app_config.js";
+const Api = require('../services/api/index')
+
+var QQMapWX = require('../services/qqmap-wx-jssdk.min');
+var qqmapsdk;
+var locationData;
 const formatMoney = function (value) {
     value = Number(value)
     if (isNaN(value)) {
@@ -93,11 +99,116 @@ const createImgName = function (dir, suffix) {
 
     return name;
 }
+// 连接两点的直线距离
+export const apiDistanceGet =async function (){
+    var locationData = wx.getStorageSync("locationData")
+    var lat = 0,lng = 0;
+    if(locationData){
+        lat = locationData.location.lat,
+        lng = locationData.location.lng
+    }
+    var _this = this;
+    var res = await Api.distanceGet({
+        lat:lat,
+        lng:lng
+    })
+    if(!res.success){
+        wx.showModal({
+            cancelColor: res.msg,
+            showCancel:false
+        })
+        return 
+    }
+    return res.result.distance;
+}
+// 获取位置
+export const getLocation = function(location='',query={}){
+    locationData = wx.getStorageSync('locationData');
+    return new Promise((resolve, reject)=> {
+        reverseGeocoderFun(location,query,resolve,reject);
+    });
+}
+// 设置本地存储
+export const setLocation=function(province,city,district,lng=0,lat=0){
+    var location={
+        'province':province,
+        'city':city,
+        'district':district,
+        'location':{
+            'lng':lng,
+            'lat':lat
+        }
+    }
+    wx.setStorageSync('locationData', location);
+}
+function reverseGeocoderFun(location,query,resolve,reject){
+    if( !qqmapsdk ){
+        qqmapsdk = new QQMapWX({
+            key: appConfig.txMapKey,
+        });
+    }
+    qqmapsdk.reverseGeocoder({
+        location: location,
+        success:(res)=> {
+            res = res.result||{};
+            let ad_info = res.address_component||{};
+                ad_info = {
+                    city: ad_info.city,
+                    district: ad_info.district,
+                    province: ad_info.province,
+                    location: location ? {lng:'',lat:''}: res.location, //如果是拒绝授权地理位置，不保存经纬度
+                }
+            // 第一次进入无条件储存数据
+            if( !locationData ){
+                setLocation(ad_info.province,ad_info.city,ad_info.district,ad_info.location.lng,ad_info.location.lat);
+                resolve(ad_info);
+                return;
+            }
+            // 匹配当前地址和定位是否一致（按照市匹配）
+            if( locationData.city!=ad_info.city ){
+                wx.showModal({
+                    title: '位置信息',
+                    content: '当前位置发生变化是否更新？',
+                    success:(res)=> {
+                        if( res.confirm ){
+                            // 本地更新地理位置信息
+                            setLocation(ad_info.province,ad_info.city,ad_info.district,ad_info.location.lng,ad_info.location.lat);
+                            resolve(ad_info);
+                        }
+                    }
+                });
+            }else{
+                // 不更新本地数据，返回最新数据
+                resolve(ad_info);
+            }
+        },
+        fail:(err)=> {
+            console.error('地理位置授权出错',err);
+            // 没有获取过地理位置（默认北京地区）
+            if( !locationData ){
+                reverseGeocoderFun('39.92054,116.39579',query,resolve,reject);
+                return;
+            }else{
+                // 返回本地数据
+                resolve(locationData);
+            }
+        },
+        complete:(res)=> { }
+    });
+
+
+
+
+    
+}
 module.exports = {
     getTime: getTime,
     getNewTime: getNewTime,
     getTimeToTimeDay: getTimeToTimeDay,
     getDayEndTime: getDayEndTime,
     getCustomString: getCustomString,
-    createImgName: createImgName
+    createImgName: createImgName,
+    getLocation:getLocation,
+    setLocation:setLocation,
+    apiDistanceGet:apiDistanceGet
 }

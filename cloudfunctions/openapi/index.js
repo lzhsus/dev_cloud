@@ -19,6 +19,9 @@ exports.main = async (event, context) => {
         case 'getOpenData': {
             return getOpenData(event)
         }
+        case 'getPaidUnionId': {
+            return getPaidUnionId(event)
+        }
         default: {
             return
         }
@@ -88,4 +91,28 @@ async function getOpenData(event) {
     return cloud.getOpenData({
         list: event.openData.list,
     })
+}
+async function getPaidUnionId(event) {
+    var WXContext = cloud.getWXContext()
+    try {
+        var result = await cloud.openapi.auth.getPaidUnionId({
+            openid: WXContext.openData,
+            transactionId: '',
+            mchId: '',
+            outTradeNo: ''
+        })
+        await db.collection('userinfo_UnionId_config').add({
+            // data 字段表示需新增的 JSON 数据
+            data: result
+        })
+        return {
+            errcode:200,
+            msg: "操作成功",
+            result:{},
+            success:true,
+            timestamp:new Date().getTime()
+        }
+    } catch (err) {
+        return err
+    }
 }

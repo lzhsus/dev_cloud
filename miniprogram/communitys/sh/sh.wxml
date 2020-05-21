@@ -11,7 +11,7 @@
     <view class="pop-content" wx:if="{{images.length}}">
         <view class="images-box-pop">
             <view class="item-li" wx:for="{{images}}" wx:key='index'>
-                <view class="img-box"><image src="{{item}}" mode="widthFix"></image></view>
+                <view class="img-box"><image src="{{item}}" mode="widthFix"/></view>
                 <view class="close" bindtap="closeImg" data-index="{{index}}"></view>
             </view>
             <view class="submit" bindtap="submitBtn"><image src="https://6465-demo-yk46q-1301447037.tcb.qcloud.la/submit.png?sign=0ec2a92b1c04a2f48ef3fc79b60269b0&t=1584008271" mode="widthFix"/></view>

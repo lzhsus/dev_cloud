@@ -9,7 +9,8 @@
       "templateMessage.deleteTemplate",
       "templateMessage.getTemplateList",
       "templateMessage.getTemplateLibraryById",
-      "templateMessage.getTemplateLibraryList"
+      "templateMessage.getTemplateLibraryList",
+      "openapi.auth.getPaidUnionId"
     ]
   }
 }

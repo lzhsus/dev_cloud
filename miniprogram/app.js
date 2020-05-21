@@ -17,6 +17,7 @@ App({
         }
         this.globalData = {}
         this.common = common;
+        common.getLocation()
     },
     onShareAppMessage: function () {
         // return custom share data when user share.

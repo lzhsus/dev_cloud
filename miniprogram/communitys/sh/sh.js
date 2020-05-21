@@ -19,13 +19,25 @@ Page({
     getImg(type) {
         var _this = this;
         console.log(_this.data.userInfo)
+        var imagesList = this.data.imagesList;
+        db.collection('comments').get().then(res => {
+            res.data.forEach(obj=>{
+                imagesList.push({
+                    fileID:obj.fileIDs[0]
+                })
+            })
+            
+            _this.setData({
+                imagesList: imagesList
+            })
+        })
+
         if (type) {
             db.collection('db_user_images').where({
                 openid: _this.data.userInfo.openId
             }).get().then(res => {
-                console.log(res.data)
                 _this.setData({
-                    imagesList: res.data
+                    imagesList: imagesList.concat(res.data)
                 })
             })
         } else {

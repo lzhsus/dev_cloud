@@ -25,6 +25,11 @@
             <view class="li" bindtap="gotoMoreBtn" wx:if="{{apiStatic.more}}">
                 <text>更多功能</text>
             </view>
+            <view class="li">
+                <text>反馈信息</text>
+                <button open-type='feedback'>反馈信息</button>
+            </view>
+            
         </view>
     </view> 
 </view>

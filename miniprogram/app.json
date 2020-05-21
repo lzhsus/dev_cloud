@@ -6,7 +6,8 @@
         "pages/recordlist/recordlist",
         "pages/calendar/calendar",
         "pages/community/community",
-        "pages/detail/detail"
+        "pages/detail/detail",
+        "pages/demo/demo"
     ],
     "tabBar": {
         "list": [
@@ -43,8 +44,13 @@
         "backgroundColor": "#F6F6F6",
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#ff78bb",
-        "navigationBarTitleText": "云开发 QuickStart",
+        "navigationBarTitleText": "品质生活A+",
         "navigationBarTextStyle": "white"
+    },
+    "permission": {
+        "scope.userLocation": {
+            "desc": "你的位置信息将用于获取附近门店信息"
+        }
     },
     "sitemapLocation": "sitemap.json",
     "style": "v2"

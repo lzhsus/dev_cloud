@@ -1,0 +1,4 @@
+<!--pages/demo/demo.wxml-->
+<text>pages/demo/demo.wxml</text>
+
+两个坐标距离的直线距离：{{distance}}

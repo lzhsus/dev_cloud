@@ -129,6 +129,8 @@ Page({
                         if (dataObj.period_reality_continue_long || dataObj.new_time > dataObj.period_continue_long) {
                             radioIndex = 2
                         }
+                        console.log('radioIndex',radioIndex)
+                        console.log("dataObj",dataObj)
                         _this.setData({
                             periodobj: dataObj,
                             radioIndex: radioIndex,

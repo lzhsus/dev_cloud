@@ -1,32 +1,48 @@
-// 云函数模板
-// 部署：在 cloud-functions/login 文件夹右击选择 “上传并部署”
-
+const TOKEN = require('./token/index');
 const cloud = require('wx-server-sdk')
 
-// 初始化 cloud
 cloud.init({
-	// API 调用都保持和云函数当前所在环境一致
 	env: cloud.DYNAMIC_CURRENT_ENV
 })
 
-/**
- * 这个示例将经自动鉴权过的小程序用户 openid 返回给小程序端
- * 
- * event 参数包含小程序端调用传入的 data
- * 
- */
-exports.main = (event, context) => {
-	console.log(event)
-	console.log(context)
+const db = cloud.database();
+const _ = db.command;
 
-	// 可执行其他自定义逻辑
-	// console.log 的内容可以在云开发云函数调用日志查看
-
-	// 获取 WX Context (微信调用上下文)，包括 OPENID、APPID、及 UNIONID（需满足 UNIONID 获取条件）等信息
+exports.main =async (event, context) => {
 	const wxContext = cloud.getWXContext()
 
+	let token = await TOKEN.token(event,context);
+	var res = await db.collection('userinfo_config').where({
+        openId: _.eq(wxContext.OPENID)
+	}).get()
+
+	if(!res.data[0]){
+        var data_info = {};
+        data_info.openId = wxContext.OPENID;
+        data_info.appId = wxContext.APPID;
+		data_info.unionId = wxContext.UNIONID,
+		data_info.env = wxContext.ENV;
+		data_info.token = token;
+        data_info.create_time = db.serverDate();
+		data_info.updata_time = db.serverDate();
+		data_info.token_time = db.serverDate();
+		await db.collection('userinfo_config').add({
+            // data 字段表示需新增的 JSON 数据
+            data: data_info
+        })
+	}else{
+		await db.collection('userinfo_config').where({
+			openId: _.eq(wxContext.OPENID)
+        }).update({
+            data:{
+				token:token,
+				token_time:db.serverDate()
+			}
+        })
+	}
 	return {
 		event,
+		token:token,
 		openid: wxContext.OPENID,
 		appid: wxContext.APPID,
 		unionid: wxContext.UNIONID,

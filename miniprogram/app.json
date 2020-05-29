@@ -43,7 +43,7 @@
     "window": {
         "backgroundColor": "#F6F6F6",
         "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#ff78bb",
+        "navigationBarBackgroundColor": "#fff",
         "navigationBarTitleText": "品质生活A+",
         "navigationBarTextStyle": "white"
     },

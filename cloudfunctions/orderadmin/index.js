@@ -6,6 +6,8 @@ cloud.init();
 
 const db = cloud.database();
 const _ = db.command;
+const $ = db.command.aggregate
+
 const common = require('./common');
 const config = require('./config.json');
 
@@ -197,6 +199,46 @@ exports.main =  (event, context) => {
                     errcode:200,
                     msg: "操作成功!",
                     result:{},
+                    success:true,
+                    timestamp:new Date().getTime()
+                })
+            } catch (err) {
+                var error_type = common.error_type(err.errCode);
+                resolve({
+                    errcode:404,
+                    msg: error_type.type,
+                    result:err,
+                    success:false,
+                    timestamp:new Date().getTime()
+                })
+            }
+        });
+    });
+    // 聚合
+    app.router('order/demo', (ctx) => {
+        let { OPENID} = cloud.getWXContext()
+        ctx.body = new Promise(async resolve => {
+            try {
+                var res =  await db.collection('db_user_info').aggregate()
+                    // ***********分组 
+                    .group({
+                        _id: '$gender',
+                        num: $.sum(1),//计数  累加 sum
+                    }).end()
+                    // **************为每条记录添加子端
+                    // .addFields({
+                    //   totalHomework: $.sum('$gender'),
+                    //   totalQuiz: $.sum('$gender')
+                    // })
+                    // .addFields({
+                    //   totalScore: $.add(['$totalHomework', '$totalQuiz', '$extraCredit'])
+                    // })
+                    // .end()
+
+                resolve({
+                    errcode:200,
+                    msg: "操作成功!",
+                    result:res,
                     success:true,
                     timestamp:new Date().getTime()
                 })

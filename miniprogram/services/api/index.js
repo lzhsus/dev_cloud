@@ -21,5 +21,8 @@ api.orderUpdate = function(data, isShowLoading=true){
 api.distanceGet = function(data, isShowLoading=true){
     return request('distance','distance/get',data,isShowLoading);
 }
+api.orderDemo = function(data, isShowLoading=true){
+    return request('orderadmin','order/demo',data,isShowLoading);
+}
 
 module.exports = api;
